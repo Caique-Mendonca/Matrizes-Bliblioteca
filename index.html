@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Matrix{
+            constructor(rows, cols, elements){
+                this.rows = rows
+                this.cols = cols
+                this.elements = elements
+            }
+        }
+        let linhas = 3
+        let colunas = 4
+        let elementos = [4,7,8,9,3,5,4,7,1,4,2,4]
+        let matriz = new Matrix(linhas, colunas, elementos)
+        let A = new Array(matriz.rows)
+
+        for(let i = 0; i<matriz.rows; i++){
+            A[i] = new Array(matriz.cols)
+        }
+
+        let k =0
+        for(let i = 0; i< matriz.rows; i++){
+            for(let j = 0; j< matriz.cols; j++){
+                A[i][j] = elementos[k]
+                k++ 
+            }
+        }
+        
+        console.table(A)
+    </script>
+</body>
+</html>

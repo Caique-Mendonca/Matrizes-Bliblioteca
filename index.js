@@ -24,6 +24,7 @@ class Matrix{
         return `A posição A[${i}][${j}] é ${this.A[i-1][j-1]}`
     }
 }
+
 let linhas = 3
 let colunas = 4
 let elementos = [4,7,8,9,3,5,4,7,1,4,2,4]

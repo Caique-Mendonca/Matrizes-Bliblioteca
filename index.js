@@ -23,6 +23,10 @@ class Matrix{
     get(i, j){
         return `A posição A[${i}][${j}] é ${this.A[i-1][j-1]}`
     }
+
+    set(i, j, value){
+        this.A[i-1][j-1] = value
+    }
 }
 
 let linhas = 3
@@ -30,5 +34,6 @@ let colunas = 4
 let elementos = [4,7,8,9,3,5,4,7,1,4,2,4]
 let matriz = new Matrix(linhas, colunas, elementos)
 
+matriz.set(3,3, 100)
 console.table(matriz.A)
 console.log(matriz.get(1,2))

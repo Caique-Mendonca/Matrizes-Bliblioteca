@@ -29,11 +29,43 @@ class Matrix{
     }
 }
 
+class Vector{
+    constructor(dim, elements){
+        this.dim = dim
+        this.elements = elements
+
+        this.B = new Array(dim)
+        for (let i = 0; i < dim; i++){
+            this.B[i] = elements[i]
+        }
+    }
+
+    get(i){
+        return `O valor do indice ${i} é ${this.B[i-1]}`
+    }
+
+    set(i, value){
+        this.B[i-1] = value
+    }
+}
+
+// Definir matriz
 let linhas = 3
 let colunas = 4
 let elementos = [4,7,8,9,3,5,4,7,1,4,2,4]
 let matriz = new Matrix(linhas, colunas, elementos)
 
+// Definir array
+let dimensao = 5
+let elementosArray = [6,3,8,9,5]
+let array = new Vector(dimensao, elementosArray)
+
+
+
 matriz.set(3,3, 100)
 console.table(matriz.A)
 console.log(matriz.get(1,2))
+
+array.set(3, 69)
+console.log(array.B)
+console.log(array.get(4))

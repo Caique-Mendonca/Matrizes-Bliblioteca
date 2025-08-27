@@ -49,16 +49,27 @@ class Vector{
     }
 }
 
+class LinearAlgebra{
+    // transpose(a){
+    //     let transposto = new Array(a[1].length)
+    //     for(let i = 0; i < a[1].length; i++){
+    //         for(let j = 0; j < a.length; j++){
+    //            transposto[i][j] = a[i][j]
+    //         }
+    //     }
+    // }
+ }
+
 // Definir matriz
 let linhas = 3
 let colunas = 4
 let elementos = [4,7,8,9,3,5,4,7,1,4,2,4]
 let matriz = new Matrix(linhas, colunas, elementos)
 
-// Definir array
+// Definir vetor
 let dimensao = 5
 let elementosArray = [6,3,8,9,5]
-let array = new Vector(dimensao, elementosArray)
+let vetor = new Vector(dimensao, elementosArray)
 
 
 
@@ -66,6 +77,9 @@ matriz.set(3,3, 100)
 console.table(matriz.A)
 console.log(matriz.get(1,2))
 
-array.set(3, 69)
-console.log(array.B)
-console.log(array.get(4))
+vetor.set(3, 69)
+console.log(vetor.B)
+console.log(vetor.get(4))
+
+let l_algebra = new LinearAlgebra()
+console.log(l_algebra.transpose(matriz.A))

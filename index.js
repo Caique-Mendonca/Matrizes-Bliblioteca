@@ -94,7 +94,61 @@ class LinearAlgebra{
             }
             return soma
         }else{
-            return "Soma impossivel pois a e b tem dimensões diferentes"
+            return "Soma impossivel pois A e B tem dimensões diferentes"
+        }
+    }
+
+    times(a, b){
+        // numero * vetor
+        if(!Array.isArray(a) && !Array.isArray(b[0])){
+            let produtoElemento = new Array(b.length)
+            for(let i = 0; i < b.length; i++){
+                produtoElemento[i] = a * b[i]
+            }
+            return produtoElemento
+        }
+        // numero * matriz
+        if(!Array.isArray(a) && Array.isArray(b[0])){
+            let produtoElemento = new Array(b.length)
+            for(let i = 0; i < b.length; i++){
+                produtoElemento[i] = new Array(b[0].length)
+            }
+    
+            for(let i = 0; i < b.length; i++){
+                for (let j = 0; j < b[0].length; j++) {
+                    produtoElemento[i][j] = a * b[i][j]
+                }
+            }
+            return produtoElemento
+        }
+        // vetor * vetor
+        if(!Array.isArray(a[0]) && !Array.isArray(b[0])){
+                if(a.length == b.length){
+                let produtoElemento = new Array(a.length)
+                for (let i = 0; i < a.length; i++) {
+                    produtoElemento[i] = a[i] * b[i]
+                }
+                return produtoElemento
+            }else{
+                return "Produto elemento a elemento impossivel pois A e B tem dimensões diferentes"
+            }
+        }
+
+        // matriz * matriz
+        if(a.length == b.length && a[0].length == b[0].length){
+            let produtoElemento = new Array(a.length)
+            for(let i = 0; i < a.length; i++){
+                produtoElemento[i] = new Array(a[0].length)
+            }
+    
+            for(let i = 0; i < a.length; i++){
+                for (let j = 0; j < a[0].length; j++) {
+                    produtoElemento[i][j] = a[i][j] * b[i][j]
+                }
+            }
+            return produtoElemento
+        }else{
+            return "Produto elemento a elemento impossivel pois A e B tem dimensões diferentes"
         }
     }
 
@@ -143,3 +197,9 @@ console.table(l_algebra.transpose(vetor.B))
 // soma
 console.table(l_algebra.sum(matriz.A, matriz2.A))
 console.table(l_algebra.sum(vetor.B, vetor2.B))
+
+// times
+console.table(l_algebra.times(matriz.A, matriz2.A))
+console.table(l_algebra.times(vetor.B, vetor2.B))
+console.table(l_algebra.times(2, vetor2.B))
+console.table(l_algebra.times(2, matriz2.A))

@@ -50,15 +50,55 @@ class Vector{
 }
 
 class LinearAlgebra{
-    // transpose(a){
-    //     let transposto = new Array(a[1].length)
-    //     for(let i = 0; i < a[1].length; i++){
-    //         for(let j = 0; j < a.length; j++){
-    //            transposto[i][j] = a[i][j]
-    //         }
-    //     }
-    // }
- }
+    transpose(a){
+        if(!Array.isArray(a[0])){
+            let transposto = new Array(a.length)
+            for(let i = 0; i < a.length; i++){
+                transposto[i] = [a[i]]
+            }
+            return transposto
+        }
+        let transposto = new Array(a[0].length)
+        
+        for(let i = 0; i < a[0].length; i++){
+            transposto[i] = new Array(a.length)
+            for(let j = 0; j < a.length; j++){
+                transposto[i][j] = a[j][i]
+            }
+        }
+        return transposto
+    }
+
+    sum(a, b){
+        if(!Array.isArray(a[0]) && !Array.isArray(b[0])){
+            if(a.length == b.length){
+                let soma = new Array(a.length)
+                for (let i = 0; i < a.length; i++) {
+                    soma[i] = a[i] + b[i]
+                }
+                return soma
+            }else{
+                return "Soma impossivel pois a e b tem dimensões diferentes"
+            }
+        }
+        if(a.length == b.length && a[0].length == b[0].length){
+            let soma = new Array(a.length)
+            for(let i = 0; i < a.length; i++){
+                soma[i] = new Array(a[0].length)
+            }
+    
+            for(let i = 0; i < a.length; i++){
+                for (let j = 0; j < a[0].length; j++) {
+                    soma[i][j] = a[i][j] + b[i][j]
+                }
+            }
+            return soma
+        }else{
+            return "Soma impossivel pois a e b tem dimensões diferentes"
+        }
+    }
+
+}
 
 // Definir matriz
 let linhas = 3
@@ -66,20 +106,40 @@ let colunas = 4
 let elementos = [4,7,8,9,3,5,4,7,1,4,2,4]
 let matriz = new Matrix(linhas, colunas, elementos)
 
+// Matriz 2
+let linhas2 = 3
+let colunas2 = 4
+let elementos2 = [3,8,4,6,0,3,8,7,5,4,6,8]
+let matriz2 = new Matrix(linhas2, colunas2, elementos2)
+
 // Definir vetor
 let dimensao = 5
 let elementosArray = [6,3,8,9,5]
 let vetor = new Vector(dimensao, elementosArray)
+
+// Vetor 2
+let dimensao2 = 5
+let elementosArray2 = [10,5,8,5,12]
+let vetor2 = new Vector(dimensao2, elementosArray2)
 
 
 
 matriz.set(3,3, 100)
 console.table(matriz.A)
 console.log(matriz.get(1,2))
+console.table(matriz2.A)
 
 vetor.set(3, 69)
-console.log(vetor.B)
+console.table(vetor.B)
 console.log(vetor.get(4))
+console.table(vetor2.B)
 
 let l_algebra = new LinearAlgebra()
-console.log(l_algebra.transpose(matriz.A))
+
+// Transposta
+console.table(l_algebra.transpose(matriz.A))
+console.table(l_algebra.transpose(vetor.B))
+
+// soma
+console.table(l_algebra.sum(matriz.A, matriz2.A))
+console.table(l_algebra.sum(vetor.B, vetor2.B))

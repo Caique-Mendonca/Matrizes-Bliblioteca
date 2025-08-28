@@ -4,18 +4,22 @@ class Matrix{
         this.cols = cols
         this.elements = elements
 
-        this.A = new Array(rows)
-
-        for(let i = 0; i<rows; i++){
-            this.A[i] = new Array(cols)
-        }
-        
-        let k = 0
-        for(let i = 0; i<rows; i++){
-            for(let j = 0; j<cols; j++){
-                this.A[i][j] = elements[k]
-                k++
+        if(this.rows * this.cols == this.elements.length){
+            this.A = new Array(rows)
+    
+            for(let i = 0; i<rows; i++){
+                this.A[i] = new Array(cols)
             }
+            
+            let k = 0
+            for(let i = 0; i<rows; i++){
+                for(let j = 0; j<cols; j++){
+                    this.A[i][j] = this.elements[k]
+                    k++
+                }
+            }
+        }else{
+            return "O número de elementos não corresponde ao número de linhas e colunas requeridas"
         }
 
     }

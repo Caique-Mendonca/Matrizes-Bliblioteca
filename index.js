@@ -156,6 +156,40 @@ class LinearAlgebra{
         }
     }
 
+    dot(a, b){
+        if(!Array.isArray(a[0]) && !Array.isArray(b[0])){
+            if(a.length == b.length){
+                let produto = 0
+                for (let i = 0; i < a.length; i++) {
+                    produto += a[i] * b[i]
+                }
+                return produto
+            }else{
+                return "Produto impossivel, pois os vetores tem tamanhos diferentes"
+            }
+        }
+        // matriz * matriz
+        if(a[0].length == b.length){
+            let produto = new Array(a.length)
+            for (let i = 0; i < a.length; i++) {
+                produto[i] = new Array(b[0].length)
+                
+            }
+            for (let i = 0; i < a.length; i++) {
+                for (let j = 0; j < b[0].length; j++) {
+                    let soma = 0
+                    for (let k = 0; k < a[0].length; k++) {
+                        soma += a[i][k] * b[k][j]
+                    }
+                    produto[i][j] = soma
+                }
+            }
+            return produto
+        }else{
+            return "Produto impossivel, pois o numero de colunas de A não é igual ao número de linhas de B"
+        }
+    }
+
 }
 
 // Definir matriz
@@ -207,3 +241,11 @@ console.table(l_algebra.times(matriz.A, matriz2.A))
 console.table(l_algebra.times(vetor.B, vetor2.B))
 console.table(l_algebra.times(2, vetor2.B))
 console.table(l_algebra.times(2, matriz2.A))
+
+// dot
+let matrizA = new Matrix(2, 3, [1,2,3,4,5,6])
+let matrizB = new Matrix(3, 2, [7,8,9,10,11,12])
+console.table(matrizA.A)
+console.table(matrizB.A)
+console.table(l_algebra.dot(matrizA.A, matrizB.A))
+console.table(l_algebra.dot(vetor.B, vetor2.B))

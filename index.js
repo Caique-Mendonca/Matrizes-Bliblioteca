@@ -207,7 +207,7 @@ class LinearAlgebra{
         for(let i = 0; i < a.length; i++){
             if(matrizGauss[i][i] === 0){
                 let swapRow = i+1
-                while(swapRow < matrizGauss.length && matrizGauss[swapRow][i] === 0){
+                while(swapRow < a.length && matrizGauss[swapRow][i] === 0){
                     swapRow++
                 }
                 if(swapRow < a.length){
@@ -296,5 +296,5 @@ console.table(l_algebra.dot(matrizA.A, matrizB.A))
 console.table(l_algebra.dot(vetor.B, vetor2.B))
 
 // gauss
-let gauss = new Matrix(3, 3, [1,1,2, 2,4,-3, 3,6,-5])
+let gauss = new Matrix(5, 4, [2,1,-1, -3,-1,2, -2,1,2])
 console.table(l_algebra.gauss(gauss.A))

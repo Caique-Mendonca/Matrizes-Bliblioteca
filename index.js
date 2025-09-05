@@ -190,6 +190,51 @@ class LinearAlgebra{
         }
     }
 
+    gauss(a){
+        let matrizGauss = new Array(a.length)
+
+        for (let i = 0; i < a.length; i++) {
+            matrizGauss[i] = new Array(a[0].length)
+        }
+
+        for(let i = 0; i < a.length; i++){
+            for (let j = 0; j < a[0].length; j++) {
+                matrizGauss[i][j] = a[i][j]
+                
+            }
+        }
+
+        for(let i = 0; i < a.length; i++){
+            if(matrizGauss[i][i] === 0){
+                let swapRow = i+1
+                while(swapRow < matrizGauss.length && matrizGauss[swapRow][i] === 0){
+                    swapRow++
+                }
+                if(swapRow < a.length){
+                    [matrizGauss[i], matrizGauss[swapRow]] = [matrizGauss[swapRow], matrizGauss[i]]
+                }
+            }
+
+            let pivo = matrizGauss[i][i]
+            if(pivo !== 0){
+                for(let j = i; j < a[0].length; j++){
+                    matrizGauss[i][j] /= pivo
+                }
+            }
+
+            // zerar abaixo do pivo
+            for(let k = i+1; k < a.length; k++){
+                let factor = matrizGauss[k][i]
+                for(let j = i; j < a[0].length; j++){
+                    matrizGauss[k][j] -= factor * matrizGauss[i][j]
+                }
+            }
+        }
+        
+        return matrizGauss
+
+    }
+
 }
 
 // Definir matriz
@@ -249,3 +294,7 @@ console.table(matrizA.A)
 console.table(matrizB.A)
 console.table(l_algebra.dot(matrizA.A, matrizB.A))
 console.table(l_algebra.dot(vetor.B, vetor2.B))
+
+// gauss
+let gauss = new Matrix(3, 3, [1,1,2, 2,4,-3, 3,6,-5])
+console.table(l_algebra.gauss(gauss.A))
